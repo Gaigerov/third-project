@@ -1,0 +1,8 @@
+.editForm__close-icon {
+    position: absolute;
+}
+
+.editForm__close-icon:hover {
+    opacity: 60%;
+    cursor: pointer;
+}

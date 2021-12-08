@@ -1,0 +1,12 @@
+.element__like-status {
+    margin: 0 30px 0 0;
+}
+
+.element__like-status:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.element__like-status:active {
+    background-color: rgba(0, 0, 0, 1);
+}

@@ -1,0 +1,34 @@
+@import url('https://code.s3.yandex.net/web-code/normalize.css');
+@import url('../fonts/fonts.css');
+@import url('../blocks/root/root.css');
+@import url('../blocks/main/main.css');
+
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
+
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__add-button/profile__add-button.css');
+
+@import url('../blocks/profile-info/profile-info.css');
+@import url('../blocks/profile-info/__title/profile-info__title.css');
+@import url('../blocks/profile-info/__subtitle/profile-info__subtitle.css');
+@import url('../blocks/profile-info/__edit-button/profile-info__edit-button.css');
+
+@import url('../blocks/elements/elements.css');
+@import url('../blocks/element/element.css');
+@import url('../blocks/element/__image/element__image.css');
+@import url('../blocks/element/__text/element__text.css');
+@import url('../blocks/element/__like-status/element__like-status.css');
+@import url('../blocks/element/__signature/element__signature.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__text/footer__text.css');
+
+@import url('../blocks/editForm/editForm.css');
+@import url('../blocks/editForm/editForm_opened.css');
+@import url('../blocks/editForm/__title/editForm__title.css');
+@import url('../blocks/editForm/__field/editForm__field.css');
+@import url('../blocks/editForm/__button/editForm__button.css');
+@import url('../blocks/editForm/__container/editForm__container.css');
+@import url('../blocks/editForm/__close-icon/editForm__close-icon.css');

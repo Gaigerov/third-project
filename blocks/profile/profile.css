@@ -1,0 +1,65 @@
+@import url('./__avatar/profile__avatar.css');
+@import url('./__add-button/profile__add-button.css');
+
+.profile {
+    display: flex;
+    margin: 40px auto 51px;
+    max-width: 880px;
+}
+
+@media screen and (max-width: 320px){
+    .profile {
+        flex-direction: column;
+        margin: 36px 0 42px;
+        max-width: 320px;
+    }
+
+    .profile__avatar {
+        margin: auto;
+    }
+
+    .profile__add-button {
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px){
+    .profile {
+        flex-direction: column;
+        margin: 36px auto 42px;
+        max-width: 320px;
+    }
+
+    .profile__avatar {
+        margin: auto;
+    }
+
+    .profile__add-button {
+        justify-content: center;
+        margin: 0 auto;
+    }
+} 
+
+@media screen and (min-width: 769px){
+    .profile {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 880px;
+    }
+
+    .profile__avatar {
+        margin: 0;
+    }
+
+    .profile__add-button {
+        justify-self: end;
+        margin: 0;
+    }
+} 
+
+@media screen and (min-width: 895px) {
+    .profile__add-button {
+        margin-left: auto;
+    }
+} 

@@ -1,0 +1,15 @@
+@import url('./__text/element__text.css');
+@import url('./__like-status/element__like-status.css');
+@import url('./__signature/element__signature.css');
+
+.element {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 282px;
+    height: 361px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 1);
+}
