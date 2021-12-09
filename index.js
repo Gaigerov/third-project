@@ -1,11 +1,11 @@
-let formElement = document.querySelector('.editForm');
-let nameInput = document.querySelector('#nameInput');
-let jobInput = document.querySelector('#jobInput');
-let formButton = document.querySelector('.editForm__button');
-let formCloseIcon = document.querySelector('.editForm__close-icon');
-let infoTitle = document.querySelector('.profile-info__title');
-let infoSubtitle = document.querySelector('.profile-info__subtitle');
-let editButton = document.querySelector('.profile-info__edit-button');
+const formElement = document.querySelector('.editForm');
+const  nameInput = document.querySelector('#nameInput');
+const  jobInput = document.querySelector('#jobInput');
+const  formButton = document.querySelector('.editForm__button');
+const  formCloseIcon = document.querySelector('.editForm__close-icon');
+const  infoTitle = document.querySelector('.profile-info__title');
+const  infoSubtitle = document.querySelector('.profile-info__subtitle');
+const  editButton = document.querySelector('.profile-info__edit-button');
 
 
 editButton.addEventListener('click', (evt) => {
@@ -27,3 +27,4 @@ formButton.addEventListener('click',(evt) => {
     infoSubtitle.textContent = jobInput.value;
     formElement.classList.remove('editForm_opened');
 });
+

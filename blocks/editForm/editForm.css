@@ -130,8 +130,6 @@
     }
 
     .editForm__container {
-        display: flex;
-        flex-direction: column;
         margin: 34px 36px 37px;
     }
 
