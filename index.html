@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css" type="text/css">
+  <title>Mesto</title>
+</head>
+<body class="root">
+    <header class="header">
+        <img class="header__logo" src="./images/__logo.svg" alt="логотип">
+    </header>
+    <main class="main">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/gaiger-0.jpg" alt="аватар">
+                <div class="profile-info">
+                    <div class="profile-info__main-info">
+                        <h1 class="profile-info__title">Гайгеров Михаил</h1>
+                        <img class="profile-info__edit-button" src="./images/Edit Button.svg" alt="редактировать">
+                    </div>
+                     <h2 class="profile-info__subtitle">Фронтенд-разработчик</h2>
+                </div>
+            <img class="profile__add-button" src="./images/Add Button.svg" alt="добавить">
+        </section>
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="./images/Arrakis.jpeg" alt="Аракис">
+                <div class="element__signature">
+                    <p class="element__text">Аракис</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/Zion National Park, Springdale, United States.jpeg" alt="Springdale, United States">
+                <div class="element__signature">
+                    <p class="element__text">Спрингдэйл, США</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/Grecia, Grecia.png" alt="Греция">
+                <div class="element__signature">
+                    <p class="element__text">Греция</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/Hofmatt, Neuheim, Schweiz.jpeg" alt="Neuheim, Schweiz">
+                <div class="element__signature">
+                    <p class="element__text">Ньюхейм, Швайс</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/Iceland.jpeg" alt="Iceland">
+                <div class="element__signature">
+                    <p class="element__text">Исландия</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/Switzerland.jpeg" alt="Switzerland">
+                <div class="element__signature">
+                    <p class="element__text">Швейцария</p>
+                    <img class="element__like-status" src="./images/VectorHeart.svg" alt="Лайк">
+                </div>
+            </div>
+        </section>
+        <div class="editForm">
+            <div class="editForm__container">
+                <h6 class="editForm__title">Редактировать профиль</h6>
+                <input id="nameInput" class="editForm__field" type="text">
+                <input id="jobInput" class="editForm__field" type="text">
+                <button class="editForm__button" type="submit">Сохранить</button>
+            </div>
+            <img class="editForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+    <script src="./index.js" type="text/javascript"></script>
+</body>
+</html>

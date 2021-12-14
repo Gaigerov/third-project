@@ -1,0 +1,8 @@
+.profile-info__edit-button {
+    padding: 0;
+}
+
+.profile-info__edit-button:hover {
+    opacity: 60%;
+    cursor: pointer;
+}
