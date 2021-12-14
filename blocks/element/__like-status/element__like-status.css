@@ -7,6 +7,10 @@
     cursor: pointer;
 }
 
-.element__like-status:active {
+.element__like-status::before {
+    background-color: #fff;
+}
+
+.element__like-status::after {
     background-color: rgba(0, 0, 0, 1);
 }
