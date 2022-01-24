@@ -1,0 +1,115 @@
+@import url('./__container/image-popup__container.css');
+@import url('./__image/image-popup__image.css');
+@import url('./__title/image-popup__title.css');
+@import url('./__close-icon/image-popup__close-icon.css');
+
+.image-popup {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    max-width: 816px;
+    max-height: 540px;
+	top: 50%;
+	left: 0;	
+	z-index: 2;
+	opacity: 1;	
+    border: 1px solid red;
+}
+
+.image-popup:before {
+	content: '';
+	background: #000;
+	position: fixed; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	opacity: 0.7;
+	z-index: 1;
+}
+
+.image-popup.image-popup_opened {
+    display: block;
+}
+
+@media screen and (max-width: 320px){
+    .image-popup {
+        top: 5px;
+        left: 50%;
+        margin: 0 0 0 -141px;
+    }
+
+    .image-popup__close-icon {
+        top: -5px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    .image-popup__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .image-popup__container {
+        margin: 25px 22px;
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px){
+    .image-popup {
+        top: 5px;
+        left: 50%;
+        margin: 0 0 0 -141px;
+    }
+
+    .image-popup__close-icon {
+        top: -5px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    .image-popup__title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .image-popup__container {
+        margin: 25px 22px;
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+} 
+
+@media screen and (min-width: 769px){
+    .image-popup {
+        top: 30px;
+        left: 50%;
+        margin: 0 0 0 -215px;
+    }
+
+    .image-popup__close-icon {
+        top: -40px;
+        right: -40px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .image-popup__title {
+        font-size: 24px;
+        line-height: 29px;
+    }
+
+    .image-popup__container {
+        margin: 34px 36px 37px;
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+} 
+

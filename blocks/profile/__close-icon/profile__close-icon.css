@@ -1,0 +1,8 @@
+.profile__close-icon {
+    position: absolute;
+}
+
+.profile__close-icon:hover {
+    opacity: 60%;
+    cursor: pointer;
+}
