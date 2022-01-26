@@ -93,7 +93,7 @@ const initialCards = [
 
 const renderCard = () => {
     let elements = document.querySelector('.elements');
-
+        elements.innerHTML = '';
     for(let i = 0; i < initialCards.length; i++) {
     let elementContainer = document.createElement('div');
         elementContainer.className = "element";
@@ -138,41 +138,36 @@ elementLikeStatus.addEventListener(EVENTS.CLICK, (evt) => {
         elementLikeStatus.src = './images/Union.svg';
     isLikeStatus = true;
 }
-
 });
 
 // открытие карточки ----------------------------
 elementImage.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
     let imagePopup = document.querySelector('.image-popup');
-    let imagePopupContainer = document.createElement('div');
-        imagePopupContainer.className = "image-popup__container";
+
     let imagePopupImage = document.createElement('img');
         imagePopupImage.className = "image-popup__image";
         imagePopupImage.src = elementImage.src;
     let imagePopupTitle = document.createElement('p');
         imagePopupTitle.className = "image-popup__title";
         imagePopupTitle.innerHTML = elementText.textContent;
-    // let imagePopupCloseIcon = document.createElement('img');
-    //     imagePopupCloseIcon.className = "image-popup__close-icon";
-    //     imagePopupCloseIcon.src = "./images/Close Icon.svg";
 
         imagePopup.append(imagePopupContainer);
         imagePopupContainer.append(imagePopupImage);
         imagePopupContainer.append(imagePopupTitle);
-        // imagePopup.append(imagePopupCloseIcon);
+
     imagePopup.classList.add('image-popup_opened');
 })
 
 // закрытие карточки ----------------------------
 imagePopupCloseIcon.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
+    imagePopupContainer.innerHTML = '';
     imagePopup.classList.remove('image-popup_opened');
 })
 
-
 // удаление карточки ----------------------------
- elements.addEventListener(EVENTS.CLICK, (evt) => {
+elements.addEventListener(EVENTS.CLICK, (evt) => {
     const btn = evt.target.closest('.element__trash-button');
     if (!btn) {
       return;
@@ -185,15 +180,14 @@ renderCard()
 
 // добавление карточки ----------------------------
 addFormButton.addEventListener(EVENTS.CLICK, (evt) => {
-        evt.preventDefault();
-        let card = {
-                    name: namePlaceInput.value,
-                    link: linkPlaceInput.value,
-                   }
-        
-        initialCards.push(card);
-        renderCard()
-        addForm.classList.remove('addForm_opened');
+    evt.preventDefault();
+    let card = {
+    name: namePlaceInput.value,
+    link: linkPlaceInput.value,
+}
+    initialCards.push(card);
+    renderCard()
+    addForm.classList.remove('addForm_opened');
 });
 
 // открытие формы редактирования ----------------------------
@@ -229,4 +223,3 @@ addFormCloseIcon.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
     addForm.classList.remove('addForm_opened');
 });
-
