@@ -31,6 +31,7 @@ const CLASSES = {
 
 const EVENTS = {
     CLICK: 'click',
+    SUBMIT: 'submit',
 };
 
 const nameInput = document.querySelector(`#${IDS.NAME_INPUT}`);
@@ -65,78 +66,77 @@ const elementLikeStatus = document.querySelector(`.${CLASSES.ELEMENT_LIKE_STATUS
 const elementTrashButton = document.querySelector(`.${CLASSES.ELEMENT_TRASH_BUTTON}`);
 
 const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-  ]; 
+{
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+},
+{
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+},
+{
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+},
+{
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+},
+{
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+},
+{
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+},
+]; 
 
-const renderCard = () => {
-    let elements = document.querySelector('.elements');
-        elements.innerHTML = '';
-    for(let i = 0; i < initialCards.length; i++) {
-    let elementContainer = document.createElement('div');
-        elementContainer.className = "element";
-        
-    let elementImage = document.createElement('img');
-        elementImage.className = "element__image";
-        elementImage.src = initialCards[i].link;
+const renderCard = (title, link) => {
+let elements = document.querySelector('.elements');
 
-    let elementTrashButton = document.createElement('img');
-        elementTrashButton.className = "element__trash-button";
-        elementTrashButton.src = "./images/Trash.svg";
+let elementContainer = document.createElement('div');
+    elementContainer.className = "element";
+    
+let elementImage = document.createElement('img');
+    elementImage.className = "element__image";
+    elementImage.src = link;
 
-    let elementSignature = document.createElement('div');
-        elementSignature.className = "element__signature";
+let elementTrashButton = document.createElement('img');
+    elementTrashButton.className = "element__trash-button";
+    elementTrashButton.src = "./images/Trash.svg";
 
-    let elementText = document.createElement('p');
-        elementText.className = "element__text";
-        elementText.innerHTML = initialCards[i].name;
-        
-    let elementLikeStatus = document.createElement('img');
-        elementLikeStatus.className = "element__like-status";
-        elementLikeStatus.src = "./images/VectorHeart.svg";
+let elementSignature = document.createElement('div');
+    elementSignature.className = "element__signature";
 
-        elements.append(elementContainer);
-        elementContainer.append(elementImage);
-        elementContainer.append(elementTrashButton);
-        elementContainer.append(elementSignature);
-        elementSignature.append(elementText);
-        elementSignature.append(elementLikeStatus);
+let elementText = document.createElement('p');
+    elementText.className = "element__text";
+    elementText.innerHTML = title;
+    
+let elementLikeStatus = document.createElement('img');
+    elementLikeStatus.className = "element__like-status";
+    elementLikeStatus.src = "./images/VectorHeart.svg";
+
+    elements.append(elementContainer);
+    elementContainer.append(elementImage);
+    elementContainer.append(elementTrashButton);
+    elementContainer.append(elementSignature);
+    elementSignature.append(elementText);
+    elementSignature.append(elementLikeStatus);
 
 // смена статуса карточки ----------------------------
 let isLikeStatus = false;
 
 elementLikeStatus.addEventListener(EVENTS.CLICK, (evt) => {
-    evt.preventDefault();
+evt.preventDefault();
 
-    if (isLikeStatus || evt.target.classList.contains(elementLikeStatus)) {
-        elementLikeStatus.src = './images/VectorHeart.svg';
-    isLikeStatus = false;
+if (isLikeStatus || evt.target.classList.contains(elementLikeStatus)) {
+elementLikeStatus.src = './images/VectorHeart.svg';
+isLikeStatus = false;
 }
-    else {
-        elementLikeStatus.src = './images/Union.svg';
-    isLikeStatus = true;
+else {
+elementLikeStatus.src = './images/Union.svg';
+isLikeStatus = true;
 }
 });
 
@@ -144,20 +144,29 @@ elementLikeStatus.addEventListener(EVENTS.CLICK, (evt) => {
 elementImage.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
     let imagePopup = document.querySelector('.image-popup');
-
+    
     let imagePopupImage = document.createElement('img');
-        imagePopupImage.className = "image-popup__image";
-        imagePopupImage.src = elementImage.src;
+    imagePopupImage.className = "image-popup__image";
+    imagePopupImage.src = elementImage.src;
     let imagePopupTitle = document.createElement('p');
-        imagePopupTitle.className = "image-popup__title";
-        imagePopupTitle.innerHTML = elementText.textContent;
-
-        imagePopup.append(imagePopupContainer);
-        imagePopupContainer.append(imagePopupImage);
-        imagePopupContainer.append(imagePopupTitle);
-
+    imagePopupTitle.className = "image-popup__title";
+    imagePopupTitle.innerHTML = elementText.textContent;
+    
+    imagePopup.append(imagePopupContainer);
+    imagePopupContainer.append(imagePopupImage);
+    imagePopupContainer.append(imagePopupTitle);
+    
     imagePopup.classList.add('image-popup_opened');
-})
+    })
+}
+
+const initCards = (cards) => {
+    elements.innerHTML = '';
+    for (const card of cards) {
+    renderCard(card.name, card.link);      
+}
+};
+initCards(initialCards)
 
 // закрытие карточки ----------------------------
 imagePopupCloseIcon.addEventListener(EVENTS.CLICK, (evt) => {
@@ -165,18 +174,6 @@ imagePopupCloseIcon.addEventListener(EVENTS.CLICK, (evt) => {
     imagePopupContainer.innerHTML = '';
     imagePopup.classList.remove('image-popup_opened');
 })
-
-// удаление карточки ----------------------------
-elements.addEventListener(EVENTS.CLICK, (evt) => {
-    const btn = evt.target.closest('.element__trash-button');
-    if (!btn) {
-      return;
-    }  
-    btn.parentElement.remove();
-  })
-}
-}
-renderCard()
 
 // добавление карточки ----------------------------
 addFormButton.addEventListener(EVENTS.CLICK, (evt) => {
@@ -186,10 +183,21 @@ addFormButton.addEventListener(EVENTS.CLICK, (evt) => {
     link: linkPlaceInput.value,
 }
     initialCards.push(card);
-    renderCard()
+    renderCard(card.name, card.link);
+
     addForm.classList.remove('addForm_opened');
 });
 
+// удаление карточки ----------------------------
+elements.addEventListener(EVENTS.CLICK, (evt) => {
+    evt.preventDefault();
+    const btn = evt.target.closest('.element__trash-button');
+        if (!btn) {
+    return;
+    }  
+        btn.parentElement.remove();
+    })
+    
 // открытие формы редактирования ----------------------------
 profileInfoEditButton.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
@@ -215,6 +223,8 @@ editFormCloseIcon.addEventListener(EVENTS.CLICK, (evt) => {
 // открытие формы добавления карточки ----------------------------
 profileAddButton.addEventListener(EVENTS.CLICK, (evt) => {
     evt.preventDefault();
+    namePlaceInput.value = '';
+    linkPlaceInput.value = '';
     addForm.classList.add('addForm_opened');
 })
 
