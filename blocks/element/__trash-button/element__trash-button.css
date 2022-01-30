@@ -1,0 +1,13 @@
+.element__trash-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    filter: drop-shadow(1px 1px 2px rgb(0 0 0 / 0.3));
+}
+
+.element__trash-button:hover {
+    opacity: 50%;
+    cursor: pointer;
+}

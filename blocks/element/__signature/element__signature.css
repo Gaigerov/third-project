@@ -1,5 +1,6 @@
 .element__signature {
     display: flex;
+    max-height: 20%;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

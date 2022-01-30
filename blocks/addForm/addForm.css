@@ -1,10 +1,10 @@
-@import url('./__title/editForm__title.css');
-@import url('./__field/editForm__field.css');
-@import url('./__button/editForm__button.css');
-@import url('./__close-icon/editForm__close-icon.css');
-@import url('./editForm_opened.css');
+@import url('./__title/addForm__title.css');
+@import url('./__field/addForm__field.css');
+@import url('./__button/addForm__button.css');
+@import url('./__close-icon/addForm__close-icon.css');
+@import url('./addForm_opened.css');
 
-.editForm {
+.addForm {
     display: none;
     position: relative;
     flex-direction: column;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 320px){
-.editForm {
+.addFormForm {
     top: 5px;
     left: 50%;
     margin: 0 0 0 -141px;
@@ -22,14 +22,14 @@
     min-height: 322px;
 }
 
-.editForm__close-icon {
+.addForm__close-icon {
     top: -35px;
     right: 0;
     width: 20px;
     height: 20px;
 }
 
-.editForm__button {
+.addForm__button {
     font-size: 14px;
     line-height: 17px;
     margin: 45px 0 0;
@@ -37,26 +37,26 @@
     height: 46px;
 }
 
-.editForm__title {
+.addForm__title {
     font-size: 18px;
     line-height: 22px;
 }
 
-.editForm__container {
+.addForm__container {
     margin: 25px 22px;
 }
 
-.editForm__field {
+.addForm__field {
     margin-top: 75px;
 }
 
-.editForm__field:nth-child(3) {
+.addForm__field:nth-child(3) {
     margin-top: 30px;
 }
 }
 
 @media screen and (min-width: 321px) and (max-width: 768px){
-.editForm {
+.addForm {
     top: 5px;
     left: 50%;
     margin: 0 0 0 -141px;
@@ -64,14 +64,14 @@
     min-height: 322px;
 }
 
-.editForm__close-icon {
+.addForm__close-icon {
     top: -35px;
     right: 0;
     width: 20px;
     height: 20px;
 }
 
-.editForm__button {
+.addForm__button {
     font-size: 14px;
     line-height: 17px;
     margin: 45px 0 0;
@@ -79,26 +79,26 @@
     height: 46px;
 }
 
-.editForm__title {
+.addForm__title {
     font-size: 18px;
     line-height: 22px;
 }
 
-.editForm__container {
+.addForm__container {
     margin: 25px 22px;
 }
 
-.editForm__field {
+.addForm__field {
     margin-top: 75px;
 }
 
-.editForm__field:nth-child(3) {
+.addForm__field:nth-child(3) {
     margin-top: 30px;
 }
 } 
 
 @media screen and (min-width: 769px){
-.editForm {
+.addForm {
     top: 30px;
     left: 50%;
     margin: 0 0 0 -215px;
@@ -106,34 +106,34 @@
     min-height: 330px;
 }
 
-.editForm__close-icon {
+.addForm__close-icon {
     top: -40px;
     right: -40px;
     width: 32px;
     height: 32px;
 }
 
-.editForm__button {
+.addForm__button {
     font-size: 18px;
     line-height: 22px;
     margin-top: 48px;
     height: 50px;
 }
 
-.editForm__title {
+.addForm__title {
     font-size: 24px;
     line-height: 29px;
 }
 
-.editForm__container {
+.addForm__container {
     margin: 34px 36px 37px;
 }
 
-.editForm__field {
+.addForm__field {
     margin-top: 54px;
 }
 
-.editForm__field:nth-child(3) {
+.addForm__field:nth-child(3) {
     margin-top: 30px;
 }
 } 
