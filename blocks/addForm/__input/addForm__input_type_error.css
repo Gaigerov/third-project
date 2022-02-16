@@ -1,0 +1,8 @@
+.addForm__input_type_error {
+    border-bottom-color: red;
+    color: red;
+    max-height: auto;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 17px;
+}

@@ -1,4 +1,4 @@
-.addForm__field {
+.editForm__input {
     width: auto;
     height: 14px;
     padding-bottom: 13px;
@@ -7,4 +7,13 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
+    z-index: 6;
+}
+
+.input[data-rule].valid {
+    border-bottom-color: green;
+}
+
+.invalid {
+    border-bottom-color: red;
 }

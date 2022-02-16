@@ -1,12 +1,6 @@
 .addForm__button {
     font-weight: normal;
     text-align: center;
-    background-color: rgba(0, 0, 0, 1);
-    color: #fff;
-    border: none;
+    z-index: 3;
 }
 
-.addForm__button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-}

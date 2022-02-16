@@ -8,6 +8,6 @@
 }
 
 .image-popup_opened {
-    display: block;
+    visibility: visible;
     animation: showForm 0.5s linear forwards;
 }

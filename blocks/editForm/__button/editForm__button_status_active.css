@@ -1,0 +1,10 @@
+.editForm__button_status_active {
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    border: none;
+}
+
+.editForm__button_status_active:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}

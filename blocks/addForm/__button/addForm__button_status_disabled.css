@@ -1,0 +1,7 @@
+.editForm__button_status_disabled {
+    color: #000;
+    opacity: 0.2;
+    border: 1px solid #000000;
+    cursor: default;
+    background-color: #E5E5E5;
+}

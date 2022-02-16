@@ -1,21 +1,37 @@
 @import url('./__title/addForm__title.css');
-@import url('./__field/addForm__field.css');
+@import url('./__field/addForm__input.css');
+@import url('./__field/addForm__input_type_error.css');
 @import url('./__button/addForm__button.css');
+@import url('./__button/addForm__button_status_active.css');
+@import url('./__button/addForm__button_status_disabled.css');
 @import url('./__close-icon/addForm__close-icon.css');
 @import url('./addForm_opened.css');
 
 .addForm {
-    display: none;
-    position: relative;
+    visibility: hidden;
+    position:fixed;
     flex-direction: column;
     background-color: #fff;
-    position: absolute;
     border-radius: 10px;
+    z-index: 2;
+    opacity: 1;
+}
+
+.addForm_opened:before {
+    content: '';
+	background: #000;
+	position: fixed; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	opacity: 0.7;
+	z-index: 1;
 }
 
 @media screen and (max-width: 320px){
-.addFormForm {
-    top: 5px;
+.addForm {
+    top: 10%;
     left: 50%;
     margin: 0 0 0 -141px;
     width: 282px;
@@ -32,7 +48,7 @@
 .addForm__button {
     font-size: 14px;
     line-height: 17px;
-    margin: 45px 0 0;
+    margin: 31px 0 0;
     width: auto;
     height: 46px;
 }
@@ -46,18 +62,19 @@
     margin: 25px 22px;
 }
 
-.addForm__field {
-    margin-top: 75px;
+.addForm__input {
+    margin-top: 54px;
+    margin-bottom: 5px;
 }
 
-.addForm__field:nth-child(3) {
-    margin-top: 30px;
+.addForm__input:nth-last-child(3) {
+    margin-top: 13px;
 }
 }
 
 @media screen and (min-width: 321px) and (max-width: 768px){
 .addForm {
-    top: 5px;
+    top: 20%;
     left: 50%;
     margin: 0 0 0 -141px;
     width: 282px;
@@ -74,7 +91,7 @@
 .addForm__button {
     font-size: 14px;
     line-height: 17px;
-    margin: 45px 0 0;
+    margin: 31px 0 0;
     width: auto;
     height: 46px;
 }
@@ -88,18 +105,19 @@
     margin: 25px 22px;
 }
 
-.addForm__field {
-    margin-top: 75px;
+.addForm__input {
+    margin-top: 54px;
+    margin-bottom: 5px;
 }
 
-.addForm__field:nth-child(3) {
-    margin-top: 30px;
+.addForm__input:nth-last-child(3) {
+    margin-top: 13px;
 }
 } 
 
 @media screen and (min-width: 769px){
 .addForm {
-    top: 30px;
+    top: 20%;
     left: 50%;
     margin: 0 0 0 -215px;
     width: 430px;
@@ -116,7 +134,7 @@
 .addForm__button {
     font-size: 18px;
     line-height: 22px;
-    margin-top: 48px;
+    margin-top: 31px;
     height: 50px;
 }
 
@@ -129,11 +147,12 @@
     margin: 34px 36px 37px;
 }
 
-.addForm__field {
+.addForm__input {
     margin-top: 54px;
+    margin-bottom: 5px;
 }
 
-.addForm__field:nth-child(3) {
-    margin-top: 30px;
+.addForm__input:nth-last-child(3) {
+    margin-top: 13px;
 }
 } 
