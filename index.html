@@ -26,36 +26,38 @@
         </section>
         <section class="elements">
         </section>
-        <form name="editForm" class="editForm">
-            <div class="editForm__container">
-                <h6 class="editForm__title">Редактировать профиль</h6>
-                <input id="nameInput" class="editForm__input" type="text" data-rule="length"
-                    data-from="2" data-to="40" required>
-                <span id="spanName"></span>
-                <input id="jobInput" class="editForm__input" type="text" data-rule="length"
-                    data-from="2" data-to="200" required>
-                <span id="spanJob"></span>
-                <button class="editForm__button editForm__button_status_active" type="submit">Сохранить</button>
-            </div>
-            <img class="editForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
-        </form>
+        <div id="editFormOverlay">
+            <form name="editForm" class="editForm">
+                <div class="editForm__container">
+                    <h6 class="editForm__title">Редактировать профиль</h6>
+                    <input id="nameInput" class="editForm__input" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span id="spanName" class="span_error"></span>
+                    <input id="jobInput" class="editForm__input" type="text" placeholder="Место работы" minlength="2" maxlength="200" required>
+                    <span id="spanJob" class="span_error"></span>
+                    <button class="editForm__button" type="submit">Сохранить</button>
+                </div>
+                <img class="editForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+            </form>
         </div>
-        <form class="addForm" class="addForm">
-            <div class="addForm__container">
-                <h6 class="addForm__title">Новое место</h6>
-                <input id="namePlaceInput" class="addForm__input" type="text" placeholder="Название"
-                    data-rule="length" data-from="2" data-to="40" required>
-                <span id="spanPlace"></span>
-                <input id="urlPlaceInput" class="addForm__input" type="url"
-                    placeholder="Ссылка на картинку" data-rule="domain" required>
-                <span id="spanUrl"></span>
-                <button class="addForm__button addForm__button_status_active" type="submit">Создать</button>
+        </div>
+        <div id="addFormOverlay">
+            <form class="addForm" class="addForm">
+                <div class="addForm__container">
+                    <h6 class="addForm__title">Новое место</h6>
+                    <input id="namePlaceInput" class="addForm__input" type="text" placeholder="Название" minlength="2" maxlength="200" required>
+                    <span id="spanPlace" class="span_error"></span>
+                    <input id="urlPlaceInput" class="addForm__input" type="url" placeholder="Ссылка на картинку" required>
+                    <span id="spanUrl" class="span_error"></span>
+                    <button class="addForm__button" type="submit">Создать</button>
+                </div>
+                <img class="addForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+            </form>
+        </div>
+        <div id="imagePopupOverlay">
+            <div id="image-popup" class="image-popup" name="imageForm">
+                <div class="image-popup__container"></div>
+                <img class="image-popup__close-icon" src="./images/Close Icon.svg" alt="закрыть">
             </div>
-            <img class="addForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
-        </form>
-        <div id="image-popup" class="image-popup" name="imageForm">
-            <div class="image-popup__container"></div>
-            <img class="image-popup__close-icon" src="./images/Close Icon.svg" alt="закрыть">
         </div>
     </main>
     <footer class="footer">

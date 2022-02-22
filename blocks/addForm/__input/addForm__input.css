@@ -1,4 +1,5 @@
 .addForm__input {
+    color: #000;
     width: auto;
     height: 14px;
     padding-bottom: 13px;
@@ -7,13 +8,4 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    z-index: 3;
-}
-
-.input[data-rule].valid {
-    border-bottom-color: green;
-}
-
-.invalid {
-    border-bottom-color: red;
 }

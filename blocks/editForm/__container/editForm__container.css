@@ -1,5 +1,4 @@
 .editForm__container {
     display: flex;
     flex-direction: column;
-    z-index: 6;
 }

@@ -1,7 +1,7 @@
-.editForm__button_status_disabled {
+.addForm__button_status_disabled {
+    cursor: default;
     color: #000;
     opacity: 0.2;
     border: 1px solid #000000;
-    cursor: default;
     background-color: #E5E5E5;
 }

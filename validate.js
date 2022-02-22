@@ -1,80 +1,66 @@
-const spanName = document.querySelector('#spanName');
-const spanJob = document.querySelector('#spanJob');
-const spanPlace = document.querySelector('#spanPlace');
-const spanUrl = document.querySelector('#spanUrl');
-const inputName = document.querySelector('#nameInput');
-const inputJob = document.querySelector('#jobInput');
-const inputPlace = document.querySelector('#namePlaceInput');
-const inputUrl = document.querySelector('#urlPlaceInput')
-const inputs = document.querySelectorAll('input[data-rule]');
+// Запись ошибок в переменные
+const errorEmptyInput = "Вы пропустили это поле";
+const errorLittleValue = "Минимальная длинна для этого поля 2 символа. Длинна текста сейчас 1 символ";
+const errorWriteUrl = "Введите адрес сайта";
 
-for (let input of inputs) {
-    input.addEventListener('input', function () {
-        const rule = this.dataset.rule;
-        const value = this.value;
-        let check;
-
-
-        switch (rule) {
-            case 'length':
-                let length = value.length;
-                let from = +this.dataset.from;
-                let to = +this.dataset.to;
-
-                check = length >= from && length <= to;
-                if (inputName.value === "") {
-                    spanName.textContent = "Вы пропустили это поле";
-                    spanName.classList.add('editForm__input_type_error');
-                } 
-                if (inputJob.value === "") {
-                    spanJob.textContent = "Вы пропустили это поле";
-                    spanJob.classList.add('editForm__input_type_error');
-                } 
-                if (inputPlace.value) {
-                    spanPlace.textContent = "Вы пропустили это поле";
-                    spanPlace.classList.add('addForm__input_type_error');
-                } 
-                else {
-                    spanName.textContent = "Минимальная длинна для этого поля 2 символа. Длинна текста сейчас 1 символ";
-                    spanJob.textContent = "Минимальная длинна для этого поля 2 символа. Длинна текста сейчас 1 символ"
-                    spanPlace.textContent = "Минимальная длинна для этого поля 2 символа. Длинна текста сейчас 1 символ"
-                }
-                break;
-            case 'domain':
-                
-                check = /(?:https?|file|ftp):\/\/([^\/\s]+)[^\s]*/ig.test(value);
-                if (!check) {
-                    spanUrl.textContent = "Введите адрес сайта";
-                    spanUrl.classList.add('addForm__input_type_error');
-                } 
-                if (inputUrl.length < to) {
-                    spanUrl.textContent = "Вы пропустили это поле";
-                    spanUrl.classList.add('addForm__input_type_error');
-                }
-                break;
-        }
-        this.classList.remove('invalid');
-        this.classList.remove('valid');
-        editFormButton.classList.remove('editForm__button_status_disabled');
-        addFormButton.classList.remove('addForm__button_status_disabled');
-        if (check) {
-            this.classList.add('valid')
-            editFormButton.removeAttribute('disabled');
-            addFormButton.removeAttribute('disabled');
-            editFormButton.classList.add('editForm__button_status_active');
-            addFormButton.classList.add('addForm__button_status_active');
-            spanName.classList.remove('editForm__input_type_error');
-            spanJob.classList.remove('editForm__input_type_error');
-            spanPlace.classList.remove('editForm__input_type_error');
-            spanUrl.classList.remove('editForm__input_type_error');
-        } else {
-            this.classList.add('invalid')
-            editFormButton.setAttribute('disabled', true);
-            addFormButton.setAttribute('disabled', true);
-            addFormButton.classList.remove('addForm__button_status_active');
-            addFormButton.classList.remove('addForm__button_status_active');
+for (const input of inputs) {
+    const isValid = (e) => {
+        if (!input.validity.valid && editForm) {
             editFormButton.classList.add('editForm__button_status_disabled');
-            addFormButton.classList.add('editForm__button_status_disabled');
+            editFormButton.setAttribute('disabled', true);
+            input.classList.add('input_error');
+            if (e.target.value === "" && e.target === nameInput) {
+                spanName.textContent = errorEmptyInput;
+                spanName.classList.add('invalid');
+            }
+            if (e.target.value === "" && e.target === jobInput) {
+                spanJob.textContent = errorEmptyInput;
+                spanJob.classList.add('invalid');
+            }
+            if (e.target.value.length === 1 && e.target === nameInput) {
+                spanName.textContent = errorLittleValue;
+                spanName.classList.add('invalid');
+            }
+            if (e.target.value.length === 1 && e.target === jobInput) {
+                spanJob.textContent = errorLittleValue;
+                spanJob.classList.add('invalid');
+            }
         }
-    })
+        if (!input.validity.valid && addForm) {
+            addFormButton.classList.add('addForm__button_status_disabled');
+            addFormButton.setAttribute('disabled', true);
+            if (e.target.value === "" && e.target === namePlaceInput) {
+                spanPlace.textContent = errorEmptyInput;
+                spanPlace.classList.add('invalid');
+            }
+            if (e.target.value.length === 1 && e.target === namePlaceInput) {
+                spanPlace.textContent = errorLittleValue;
+                spanPlace.classList.add('invalid');
+            }
+            if (e.target.type !== 'url') {
+                spanUrl.textContent = errorWriteUrl;
+                spanUrl.classList.add('invalid');
+            }
+        }
+
+        input.classList.remove('input_error');
+
+        if (e.target.validity.valid && editForm) {
+            editFormButton.classList.remove('editForm__button_status_disabled')
+            editFormButton.removeAttribute('disabled');
+            for (let i = 0; i < spans.length; i += 1) {
+                spans[i].textContent = "";
+                spans[i].classList.remove('invalid');
+            }
+        }
+        if (e.target.validity.valid && addForm) {
+            addFormButton.classList.remove('addForm__button_status_disabled')
+            addFormButton.removeAttribute('disabled');
+            for (let i = 0; i < spans.length; i += 1) {
+                spans[i].textContent = "";
+                spans[i].classList.remove('invalid');
+            }
+        }
+    }
+    input.addEventListener('input', isValid);
 }

@@ -1,8 +1,20 @@
+const TAGS = {
+    INPUTS: 'input',
+    SPANS: 'span'
+}
+
 const IDS = {
+    EDIT_FORM_OVERLAY: 'editFormOverlay',
+    ADD_FORM_OVERLAY: 'addFormOverlay',
+    IMAGE_POPUP_OVERLAY: 'imagePopupOverlay',
     NAME_INPUT: 'nameInput',
     JOB_INPUT: 'jobInput',
     NAME_PLACE_INPUT: 'namePlaceInput',
-    URL_PLACE_INPUT: 'urlPlaceInput'
+    URL_PLACE_INPUT: 'urlPlaceInput',
+    NAME_SPAN: 'spanName',
+    JOB_SPAN: 'spanJob',
+    PLACE_SPAN: 'spanPlace',
+    URL_SPAN: 'spanUrl'
 };
 
 const CLASSES = {
@@ -33,13 +45,11 @@ const EVENTS = {
     CLICK: 'click',
     SUBMIT: 'submit',
     KEYUP: 'keyup',
-    MOUSEUP: 'mouseup'
+    MOUSEDOWN: 'mousedown'
 };
 
-const nameInput = document.querySelector(`#${IDS.NAME_INPUT}`);
-const jobInput = document.querySelector(`#${IDS.JOB_INPUT}`);
-const namePlaceInput = document.querySelector(`#${IDS.NAME_PLACE_INPUT}`);
-const urlPlaceInput = document.querySelector(`#${IDS.URL_PLACE_INPUT}`);
+const inputs = document.querySelectorAll(`${TAGS.INPUTS}`);
+const spans = document.querySelectorAll(`${TAGS.SPANS}`);
 
 const profileInfoTitle = document.querySelector(`.${CLASSES.PROFILE_INFO_TITLE}`);
 const profileInfoSubtitle = document.querySelector(`.${CLASSES.PROFILE_INFO_SUBTITLE}`);
@@ -66,6 +76,19 @@ const elementImage = document.querySelector(`.${CLASSES.ELEMENT_IMAGE}`);
 const elementText = document.querySelector(`.${CLASSES.ELEMENT_TEXT}`);
 const elementLikeStatus = document.querySelector(`.${CLASSES.ELEMENT_LIKE_STATUS}`);
 const elementTrashButton = document.querySelector(`.${CLASSES.ELEMENT_TRASH_BUTTON}`);
+
+const nameInput = document.querySelector(`#${IDS.NAME_INPUT}`);
+const jobInput = document.querySelector(`#${IDS.JOB_INPUT}`);
+const namePlaceInput = document.querySelector(`#${IDS.NAME_PLACE_INPUT}`);
+const urlPlaceInput = document.querySelector(`#${IDS.URL_PLACE_INPUT}`);
+const spanName = editForm.querySelector(`#${IDS.NAME_SPAN}`);
+const spanJob = editForm.querySelector(`#${IDS.JOB_SPAN}`);
+const spanPlace = addForm.querySelector(`#${IDS.PLACE_SPAN}`);
+const spanUrl = addForm.querySelector(`#${IDS.URL_SPAN}`);
+const editFormOverlay = document.querySelector(`#${IDS.EDIT_FORM_OVERLAY}`);
+const addFormOverlay = document.querySelector(`#${IDS.ADD_FORM_OVERLAY}`);
+const imagePopupOverlay = document.querySelector(`#${IDS.IMAGE_POPUP_OVERLAY}`);
+
 
 const initialCards = [
     {
@@ -147,6 +170,7 @@ const renderCard = (title, url) => {
             evt.preventDefault();
             namePlaceInput.value = '';
             urlPlaceInput.value = '';
+            addFormOverlay.classList.add('formOverlay');
             addForm.classList.add('addForm_opened');
         }
     }
@@ -159,6 +183,7 @@ const renderCard = (title, url) => {
             evt.preventDefault();
             nameInput.value = profileInfoTitle.innerHTML;
             jobInput.value = profileInfoSubtitle.innerHTML;
+            editFormOverlay.classList.add('formOverlay');
             editForm.classList.add('editForm_opened');
         }
     }
@@ -181,6 +206,7 @@ const renderCard = (title, url) => {
         imagePopupContainer.append(imagePopupImage);
         imagePopupContainer.append(imagePopupTitle);
 
+        imagePopupOverlay.classList.add('formOverlay');
         imagePopup.classList.add('image-popup_opened');
     }
 
@@ -199,6 +225,7 @@ initCards(initialCards);
 const addCard = (evt) => {
     evt.preventDefault();
     renderCard(namePlaceInput.value, urlPlaceInput.value);
+    addFormOverlay.classList.remove('formOverlay');
     addForm.classList.remove('addForm_opened');
 }
 
@@ -221,6 +248,7 @@ const saveChangesEditForm = (evt) => {
     evt.preventDefault();
     profileInfoTitle.textContent = nameInput.value;
     profileInfoSubtitle.textContent = jobInput.value;
+    editFormOverlay.classList.remove('formOverlay');
     editForm.classList.remove('editForm_opened');
 }
 
@@ -229,8 +257,8 @@ editFormButton.addEventListener(EVENTS.CLICK, saveChangesEditForm);
 // сохранение форм с submit через нажатие Enter ----------------------------
 editForm.addEventListener(EVENTS.KEYUP, function (evt) {
     if ((editForm || addForm) && evt.key === 'Enter') {
-        if (editForm) {saveChangesEditForm(evt);}
-        if (addForm) {addCard(evt);}
+        if (editForm && nameInput.validity.valid && jobInput.validity.valid) {saveChangesEditForm(evt);}
+        if (addForm && namePlaceInput.validity.valid && urlPlaceInput.validity.valid) {addCard(evt);}
     }
 })
 
@@ -238,13 +266,16 @@ editForm.addEventListener(EVENTS.KEYUP, function (evt) {
 const closePopup = (evt) => {
     evt.preventDefault();
     if (editForm) {
+        editFormOverlay.classList.remove('formOverlay');
         editForm.classList.remove('editForm_opened');
     }
     if (addForm) {
+        addFormOverlay.classList.remove('formOverlay');
         addForm.classList.remove('addForm_opened');
     }
     if (imagePopup) {
         imagePopupContainer.innerHTML = '';
+        imagePopupOverlay.classList.remove('formOverlay');
         imagePopup.classList.remove('image-popup_opened');
     }
 }
@@ -266,12 +297,12 @@ document.body.addEventListener(EVENTS.KEYUP, function (evt) {
 })
 
 // закрытие формы при нажатии на клике вне объекта ----------------------------
-document.body.addEventListener(EVENTS.MOUSEUP, function (evt) {
+document.body.addEventListener(EVENTS.MOUSEDOWN, function (evt) {
     const edit = evt.target.closest('.editForm');
     const add = evt.target.closest('.addForm');
-    const image = evt.target.closest('imagePopup');
+    const image = evt.target.closest('.image-popup');
 
-    if ((edit || add || image) || (!editForm || !addForm)) {
+    if (edit || add || image) {
         return;
     }
     closePopup(evt)
