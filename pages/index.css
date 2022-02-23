@@ -54,3 +54,22 @@
 
 @import url('../blocks/formOverlay/formOverlay.css');
 @import url('../blocks/validate/validate.css');
+
+
+@keyframes showForm {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes closeForm {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

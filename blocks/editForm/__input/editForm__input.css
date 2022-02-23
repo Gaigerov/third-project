@@ -1,5 +1,5 @@
 .editForm__input {
-    color: #000;
+    color: var(--font-color-dark);
     width: auto;
     height: 14px;
     padding-bottom: 13px;

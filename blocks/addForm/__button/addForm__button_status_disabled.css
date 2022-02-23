@@ -1,7 +1,7 @@
 .addForm__button_status_disabled {
     cursor: default;
-    color: #000;
+    color: var(--font-color-dark);
     opacity: 0.2;
-    border: 1px solid #000000;
-    background-color: #E5E5E5;
+    border: 1px solid var(--border-color-dark);
+    background-color: var(--color-disabled);
 }

@@ -1,21 +1,26 @@
 .root {
-    background-color: #000;   
-    color: #fff;
+    --color-light: #fff;
+    --color-dark: #000; 
+    --border-color-dark: #000;
+    --font-color-light: #fff;
+    --font-color-dark: #000; 
+    --color-disabled: #E5E5E5; 
     min-width: 320px;
     margin: auto;
     -webkit-font-smoothing: antialiased;
+    background-color: var(--color-dark);
     overflow-x: hidden;  
 }
 
 a {
-    color: #fff;
+    color: var(--font-color-light);
     text-decoration: none;
 }
 
 a:visited {
-    color: #fff;
+    color: var(--font-color-light);
 }
 
 a:active {
-    color: #fff;
+    color: var(--font-color-light);
 }

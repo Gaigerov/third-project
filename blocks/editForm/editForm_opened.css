@@ -1,13 +1,4 @@
-@keyframes showForm {
-    0% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-}
-
 .editForm_opened {
     visibility: visible;
-    animation: showForm 1s linear forwards;
+    animation: showForm 0.5s linear forwards;
 }

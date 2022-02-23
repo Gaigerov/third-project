@@ -152,7 +152,7 @@ const renderCard = (title, url) => {
     // смена статуса карточки ----------------------------
     let isLikeStatus = false;
 
-    const changeLikeStatus = (evt) => {
+    const changeLikeStatus = evt => {
         if (isLikeStatus || evt.target.classList.contains(elementLikeStatus)) {
             elementLikeStatus.src = './images/VectorHeart.svg';
             isLikeStatus = false;
@@ -165,7 +165,7 @@ const renderCard = (title, url) => {
     elementLikeStatus.addEventListener(EVENTS.CLICK, changeLikeStatus);
 
     // открытие формы добавления карточки ----------------------------
-    const openAddForm = (evt) => {
+    const openAddForm = evt => {
         if (addForm) {
             evt.preventDefault();
             namePlaceInput.value = '';
@@ -178,7 +178,7 @@ const renderCard = (title, url) => {
     profileAddButton.addEventListener(EVENTS.CLICK, openAddForm);
 
     // открытие формы редактирования ----------------------------
-    const openEditForm = (evt) => {
+    const openEditForm = evt => {
         if (editForm) {
             evt.preventDefault();
             nameInput.value = profileInfoTitle.innerHTML;
@@ -191,7 +191,7 @@ const renderCard = (title, url) => {
     profileInfoEditButton.addEventListener(EVENTS.CLICK, openEditForm);
 
     // открытие карточки ----------------------------
-    const openCard = (evt) => {
+    const openCard = evt => {
         evt.preventDefault();
         const imagePopup = document.querySelector('.image-popup');
 
@@ -222,7 +222,7 @@ const initCards = cards => {
 initCards(initialCards);
 
 // добавление карточки ----------------------------
-const addCard = (evt) => {
+const addCard = evt => {
     evt.preventDefault();
     renderCard(namePlaceInput.value, urlPlaceInput.value);
     addFormOverlay.classList.remove('formOverlay');
@@ -232,7 +232,7 @@ const addCard = (evt) => {
 addFormButton.addEventListener(EVENTS.CLICK, addCard);
 
 // удаление карточки ----------------------------
-const removeCard = (evt) => {
+const removeCard = evt => {
     evt.preventDefault();
     const btn = evt.target.closest('.element__trash-button');
     if (!btn) {
@@ -244,7 +244,7 @@ const removeCard = (evt) => {
 elements.addEventListener(EVENTS.CLICK, removeCard);
 
 // сохранение изменений формы редактирования ----------------------------
-const saveChangesEditForm = (evt) => {
+const saveChangesEditForm = evt => {
     evt.preventDefault();
     profileInfoTitle.textContent = nameInput.value;
     profileInfoSubtitle.textContent = jobInput.value;
@@ -255,7 +255,7 @@ const saveChangesEditForm = (evt) => {
 editFormButton.addEventListener(EVENTS.CLICK, saveChangesEditForm);
 
 // сохранение форм с submit через нажатие Enter ----------------------------
-editForm.addEventListener(EVENTS.KEYUP, function (evt) {
+editForm.addEventListener(EVENTS.KEYUP, evt => {
     if ((editForm || addForm) && evt.key === 'Enter') {
         if (editForm && nameInput.validity.valid && jobInput.validity.valid) {saveChangesEditForm(evt);}
         if (addForm && namePlaceInput.validity.valid && urlPlaceInput.validity.valid) {addCard(evt);}
@@ -263,7 +263,7 @@ editForm.addEventListener(EVENTS.KEYUP, function (evt) {
 })
 
 // функция закрытия ----------------------------
-const closePopup = (evt) => {
+const closePopup = evt => {
     evt.preventDefault();
     if (editForm) {
         editFormOverlay.classList.remove('formOverlay');
@@ -290,14 +290,14 @@ editFormCloseIcon.addEventListener(EVENTS.CLICK, closePopup);
 addFormCloseIcon.addEventListener(EVENTS.CLICK, closePopup);
 
 // закрытие формы при нажатии на эскейп ----------------------------
-document.body.addEventListener(EVENTS.KEYUP, function (evt) {
+document.body.addEventListener(EVENTS.KEYUP, evt => {
     if (evt.key === 'Escape') {
         closePopup(evt)
     }
 })
 
 // закрытие формы при нажатии на клике вне объекта ----------------------------
-document.body.addEventListener(EVENTS.MOUSEDOWN, function (evt) {
+document.body.addEventListener(EVENTS.MOUSEDOWN, evt => {
     const edit = evt.target.closest('.editForm');
     const add = evt.target.closest('.addForm');
     const image = evt.target.closest('.image-popup');

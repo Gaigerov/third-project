@@ -2,12 +2,13 @@
     font-weight: normal;
     text-align: center;
     position: relative;
-    background-color: rgba(0, 0, 0, 1);
-    color: #fff;
+    background-color: var(--color-dark);
+    color: var(--font-color-light);
     border: none;
 }
 
 .addForm__button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--color-dark);
+    opacity: 80%;
     cursor: pointer;
 }

@@ -9,7 +9,7 @@
     visibility: hidden;
     position: fixed;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--color-light);
     border-radius: 10px;
 }
 
