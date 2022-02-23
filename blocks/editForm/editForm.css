@@ -1,21 +1,21 @@
 @import url('./__title/editForm__title.css');
-@import url('./__field/editForm__field.css');
+@import url('./__input/editForm__input.css');
 @import url('./__button/editForm__button.css');
+@import url('./__button/editForm__button_status_disabled.css');
 @import url('./__close-icon/editForm__close-icon.css');
 @import url('./editForm_opened.css');
 
 .editForm {
-    display: none;
-    position: relative;
+    visibility: hidden;
+    position: fixed;
     flex-direction: column;
     background-color: #fff;
-    position: absolute;
     border-radius: 10px;
 }
 
 @media screen and (max-width: 320px){
 .editForm {
-    top: 5px;
+    top: 10%;
     left: 50%;
     margin: 0 0 0 -141px;
     width: 282px;
@@ -32,7 +32,7 @@
 .editForm__button {
     font-size: 14px;
     line-height: 17px;
-    margin: 45px 0 0;
+    margin: 31px 0 0;
     width: auto;
     height: 46px;
 }
@@ -40,24 +40,17 @@
 .editForm__title {
     font-size: 18px;
     line-height: 22px;
+    margin: 0 0 54px;
 }
 
 .editForm__container {
     margin: 25px 22px;
-}
-
-.editForm__field {
-    margin-top: 75px;
-}
-
-.editForm__field:nth-child(3) {
-    margin-top: 30px;
 }
 }
 
 @media screen and (min-width: 321px) and (max-width: 768px){
 .editForm {
-    top: 5px;
+    top: 20%;
     left: 50%;
     margin: 0 0 0 -141px;
     width: 282px;
@@ -74,7 +67,7 @@
 .editForm__button {
     font-size: 14px;
     line-height: 17px;
-    margin: 45px 0 0;
+    margin: 31px 0 0;
     width: auto;
     height: 46px;
 }
@@ -82,24 +75,17 @@
 .editForm__title {
     font-size: 18px;
     line-height: 22px;
+    margin: 0 0 54px;
 }
 
 .editForm__container {
     margin: 25px 22px;
 }
-
-.editForm__field {
-    margin-top: 75px;
-}
-
-.editForm__field:nth-child(3) {
-    margin-top: 30px;
-}
 } 
 
 @media screen and (min-width: 769px){
 .editForm {
-    top: 30px;
+    top: 20%;
     left: 50%;
     margin: 0 0 0 -215px;
     width: 430px;
@@ -116,24 +102,17 @@
 .editForm__button {
     font-size: 18px;
     line-height: 22px;
-    margin-top: 48px;
+    margin-top: 31px;
     height: 50px;
 }
 
 .editForm__title {
     font-size: 24px;
     line-height: 29px;
+    margin: 0 0 54px;
 }
 
 .editForm__container {
     margin: 34px 36px 37px;
-}
-
-.editForm__field {
-    margin-top: 54px;
-}
-
-.editForm__field:nth-child(3) {
-    margin-top: 30px;
 }
 } 

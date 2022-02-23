@@ -8,6 +8,7 @@
     flex-direction: row;
     max-height: auto;
     align-self: center;
+    color: var(--font-color-light);
 }
 
 @media screen and (max-width: 320px){

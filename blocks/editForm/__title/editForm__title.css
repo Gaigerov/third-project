@@ -1,5 +1,4 @@
 .editForm__title {
-    color: #000;
+    color: var(--font-color-dark);
     font-weight: 900;
-    margin: 0;
 }

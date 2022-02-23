@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./pages/index.css" type="text/css">
-  <title>Mesto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./pages/index.css" type="text/css">
+    <title>Mesto</title>
 </head>
+
 <body class="root">
     <header class="header">
         <img class="header__logo" src="./images/__logo.svg" alt="логотип">
@@ -13,43 +15,56 @@
     <main class="main">
         <section class="profile">
             <img class="profile__avatar" src="./images/gaiger-0.jpg" alt="аватар">
-                <div class="profile-info">
-                    <div class="profile-info__main-info">
-                        <h1 class="profile-info__title">Гайгеров Михаил</h1>
-                        <img class="profile-info__edit-button" src="./images/Edit Button.svg" alt="редактировать">
-                    </div>
-                     <h2 class="profile-info__subtitle">Фронтенд-разработчик</h2>
+            <div class="profile-info">
+                <div class="profile-info__main-info">
+                    <h1 class="profile-info__title">Гайгеров Михаил</h1>
+                    <img class="profile-info__edit-button" src="./images/Edit Button.svg" alt="редактировать">
                 </div>
+                <h2 class="profile-info__subtitle">Фронтенд-разработчик</h2>
+            </div>
             <img class="profile__add-button" src="./images/Add Button.svg" alt="добавить">
         </section>
         <section class="elements">
         </section>
-        <div class="editForm">
-            <div class="editForm__container">
-                <h6 class="editForm__title">Редактировать профиль</h6>
-                <input id="nameInput" class="editForm__field" type="text">
-                <input id="jobInput" class="editForm__field" type="text">
-                <button class="editForm__button" type="submit">Сохранить</button>
-            </div>
-            <img class="editForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+        <div id="editFormOverlay">
+            <form name="editForm" class="editForm">
+                <div class="editForm__container">
+                    <h6 class="editForm__title">Редактировать профиль</h6>
+                    <input id="nameInput" class="editForm__input" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span id="spanName" class="span_error"></span>
+                    <input id="jobInput" class="editForm__input" type="text" placeholder="Место работы" minlength="2" maxlength="200" required>
+                    <span id="spanJob" class="span_error"></span>
+                    <button class="editForm__button" type="submit">Сохранить</button>
+                </div>
+                <img class="editForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+            </form>
         </div>
-        <div class="addForm">
-            <div class="addForm__container">
-                <h6 class="addForm__title">Новое место</h6>
-                <input id="namePlaceInput" class="addForm__field" type="text" placeholder="Название">
-                <input id="linkPlaceInput" class="addForm__field" type="text" placeholder="Ссылка на картинку">
-                <button class="addForm__button" type="submit">Создать</button>
-            </div>
-            <img class="addForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
         </div>
-        <div class="image-popup">
-            <div class="image-popup__container"></div>
-            <img class="image-popup__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+        <div id="addFormOverlay">
+            <form class="addForm" class="addForm">
+                <div class="addForm__container">
+                    <h6 class="addForm__title">Новое место</h6>
+                    <input id="namePlaceInput" class="addForm__input" type="text" placeholder="Название" minlength="2" maxlength="200" required>
+                    <span id="spanPlace" class="span_error"></span>
+                    <input id="urlPlaceInput" class="addForm__input" type="url" placeholder="Ссылка на картинку" required>
+                    <span id="spanUrl" class="span_error"></span>
+                    <button class="addForm__button" type="submit">Создать</button>
+                </div>
+                <img class="addForm__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+            </form>
+        </div>
+        <div id="imagePopupOverlay">
+            <div id="image-popup" class="image-popup" name="imageForm">
+                <div class="image-popup__container"></div>
+                <img class="image-popup__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+            </div>
         </div>
     </main>
     <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
     <script src="./index.js" type="text/javascript"></script>
+    <script src="./validate.js" type="text/javascript"></script>
 </body>
+
 </html>

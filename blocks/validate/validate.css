@@ -1,0 +1,14 @@
+.invalid {
+    color: red;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+.input_error {
+    border-bottom-color: red;
+  } 
+
+.span_error {
+    height: 30px;
+}

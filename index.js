@@ -1,8 +1,20 @@
+const TAGS = {
+    INPUTS: 'input',
+    SPANS: 'span'
+}
+
 const IDS = {
+    EDIT_FORM_OVERLAY: 'editFormOverlay',
+    ADD_FORM_OVERLAY: 'addFormOverlay',
+    IMAGE_POPUP_OVERLAY: 'imagePopupOverlay',
     NAME_INPUT: 'nameInput',
     JOB_INPUT: 'jobInput',
     NAME_PLACE_INPUT: 'namePlaceInput',
-    LINK_PLACE_INPUT: 'linkPlaceInput'
+    URL_PLACE_INPUT: 'urlPlaceInput',
+    NAME_SPAN: 'spanName',
+    JOB_SPAN: 'spanJob',
+    PLACE_SPAN: 'spanPlace',
+    URL_SPAN: 'spanUrl'
 };
 
 const CLASSES = {
@@ -31,13 +43,13 @@ const CLASSES = {
 
 const EVENTS = {
     CLICK: 'click',
-    SUBMIT: 'submit'
+    SUBMIT: 'submit',
+    KEYUP: 'keyup',
+    MOUSEDOWN: 'mousedown'
 };
 
-const nameInput = document.querySelector(`#${IDS.NAME_INPUT}`);
-const jobInput = document.querySelector(`#${IDS.JOB_INPUT}`);
-const namePlaceInput = document.querySelector(`#${IDS.NAME_PLACE_INPUT}`);
-const linkPlaceInput = document.querySelector(`#${IDS.LINK_PLACE_INPUT}`);
+const inputs = document.querySelectorAll(`${TAGS.INPUTS}`);
+const spans = document.querySelectorAll(`${TAGS.SPANS}`);
 
 const profileInfoTitle = document.querySelector(`.${CLASSES.PROFILE_INFO_TITLE}`);
 const profileInfoSubtitle = document.querySelector(`.${CLASSES.PROFILE_INFO_SUBTITLE}`);
@@ -65,55 +77,68 @@ const elementText = document.querySelector(`.${CLASSES.ELEMENT_TEXT}`);
 const elementLikeStatus = document.querySelector(`.${CLASSES.ELEMENT_LIKE_STATUS}`);
 const elementTrashButton = document.querySelector(`.${CLASSES.ELEMENT_TRASH_BUTTON}`);
 
+const nameInput = document.querySelector(`#${IDS.NAME_INPUT}`);
+const jobInput = document.querySelector(`#${IDS.JOB_INPUT}`);
+const namePlaceInput = document.querySelector(`#${IDS.NAME_PLACE_INPUT}`);
+const urlPlaceInput = document.querySelector(`#${IDS.URL_PLACE_INPUT}`);
+const spanName = editForm.querySelector(`#${IDS.NAME_SPAN}`);
+const spanJob = editForm.querySelector(`#${IDS.JOB_SPAN}`);
+const spanPlace = addForm.querySelector(`#${IDS.PLACE_SPAN}`);
+const spanUrl = addForm.querySelector(`#${IDS.URL_SPAN}`);
+const editFormOverlay = document.querySelector(`#${IDS.EDIT_FORM_OVERLAY}`);
+const addFormOverlay = document.querySelector(`#${IDS.ADD_FORM_OVERLAY}`);
+const imagePopupOverlay = document.querySelector(`#${IDS.IMAGE_POPUP_OVERLAY}`);
+
+
 const initialCards = [
     {
         name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
         name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
         name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
         name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
         name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
         name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
 
-const renderCard = (title, link) => {
-    let elements = document.querySelector('.elements');
+const renderCard = (title, url) => {
+    const elements = document.querySelector('.elements');
 
-    let elementContainer = document.createElement('div');
+    const elementContainer = document.createElement('div');
     elementContainer.className = 'element';
 
-    let elementImage = document.createElement('img');
+    const elementImage = document.createElement('img');
     elementImage.className = 'element__image';
-    elementImage.src = link;
+    elementImage.src = url;
 
-    let elementTrashButton = document.createElement('img');
+    const elementTrashButton = document.createElement('img');
     elementTrashButton.className = 'element__trash-button';
     elementTrashButton.src = './images/Trash.svg';
 
-    let elementSignature = document.createElement('div');
+    const elementSignature = document.createElement('div');
     elementSignature.className = 'element__signature';
 
-    let elementText = document.createElement('p');
+    const elementText = document.createElement('p');
     elementText.className = 'element__text';
     elementText.innerHTML = title;
 
-    let elementLikeStatus = document.createElement('img');
+    const elementLikeStatus = document.createElement('img');
     elementLikeStatus.className = 'element__like-status';
     elementLikeStatus.src = './images/VectorHeart.svg';
 
@@ -127,9 +152,7 @@ const renderCard = (title, link) => {
     // смена статуса карточки ----------------------------
     let isLikeStatus = false;
 
-    elementLikeStatus.addEventListener(EVENTS.CLICK, evt => {
-        evt.preventDefault();
-
+    const changeLikeStatus = evt => {
         if (isLikeStatus || evt.target.classList.contains(elementLikeStatus)) {
             elementLikeStatus.src = './images/VectorHeart.svg';
             isLikeStatus = false;
@@ -137,17 +160,45 @@ const renderCard = (title, link) => {
             elementLikeStatus.src = './images/Union.svg';
             isLikeStatus = true;
         }
-    });
+    }
+
+    elementLikeStatus.addEventListener(EVENTS.CLICK, changeLikeStatus);
+
+    // открытие формы добавления карточки ----------------------------
+    const openAddForm = evt => {
+        if (addForm) {
+            evt.preventDefault();
+            namePlaceInput.value = '';
+            urlPlaceInput.value = '';
+            addFormOverlay.classList.add('formOverlay');
+            addForm.classList.add('addForm_opened');
+        }
+    }
+
+    profileAddButton.addEventListener(EVENTS.CLICK, openAddForm);
+
+    // открытие формы редактирования ----------------------------
+    const openEditForm = evt => {
+        if (editForm) {
+            evt.preventDefault();
+            nameInput.value = profileInfoTitle.innerHTML;
+            jobInput.value = profileInfoSubtitle.innerHTML;
+            editFormOverlay.classList.add('formOverlay');
+            editForm.classList.add('editForm_opened');
+        }
+    }
+
+    profileInfoEditButton.addEventListener(EVENTS.CLICK, openEditForm);
 
     // открытие карточки ----------------------------
-    elementImage.addEventListener(EVENTS.CLICK, evt => {
+    const openCard = evt => {
         evt.preventDefault();
-        let imagePopup = document.querySelector('.image-popup');
+        const imagePopup = document.querySelector('.image-popup');
 
-        let imagePopupImage = document.createElement('img');
+        const imagePopupImage = document.createElement('img');
         imagePopupImage.className = 'image-popup__image';
         imagePopupImage.src = elementImage.src;
-        let imagePopupTitle = document.createElement('p');
+        const imagePopupTitle = document.createElement('p');
         imagePopupTitle.className = 'image-popup__title';
         imagePopupTitle.innerHTML = elementText.textContent;
 
@@ -155,74 +206,104 @@ const renderCard = (title, link) => {
         imagePopupContainer.append(imagePopupImage);
         imagePopupContainer.append(imagePopupTitle);
 
+        imagePopupOverlay.classList.add('formOverlay');
         imagePopup.classList.add('image-popup_opened');
-    });
+    }
+
+    elementImage.addEventListener(EVENTS.CLICK, openCard);
 };
 
 const initCards = cards => {
     elements.innerHTML = '';
     for (const card of cards) {
-        renderCard(card.name, card.link);
+        renderCard(card.name, card.url);
     }
 };
 initCards(initialCards);
 
-// закрытие карточки ----------------------------
-imagePopupCloseIcon.addEventListener(EVENTS.CLICK, evt => {
-    evt.preventDefault();
-    imagePopupContainer.innerHTML = '';
-    imagePopup.classList.remove('image-popup_opened');
-});
-
 // добавление карточки ----------------------------
-addFormButton.addEventListener(EVENTS.CLICK, evt => {
+const addCard = evt => {
     evt.preventDefault();
-    renderCard(namePlaceInput.value, linkPlaceInput.value);
+    renderCard(namePlaceInput.value, urlPlaceInput.value);
+    addFormOverlay.classList.remove('formOverlay');
     addForm.classList.remove('addForm_opened');
-});
+}
+
+addFormButton.addEventListener(EVENTS.CLICK, addCard);
 
 // удаление карточки ----------------------------
-elements.addEventListener(EVENTS.CLICK, evt => {
+const removeCard = evt => {
     evt.preventDefault();
     const btn = evt.target.closest('.element__trash-button');
     if (!btn) {
         return;
     }
-    btn.parentElement.remove();
-});
+    btn.parentElement.remove()
+}
 
-// открытие формы редактирования ----------------------------
-profileInfoEditButton.addEventListener(EVENTS.CLICK, evt => {
-    evt.preventDefault();
-    nameInput.value = profileInfoTitle.innerHTML;
-    jobInput.value = profileInfoSubtitle.innerHTML;
-    editForm.classList.add('editForm_opened');
-});
+elements.addEventListener(EVENTS.CLICK, removeCard);
 
 // сохранение изменений формы редактирования ----------------------------
-editFormButton.addEventListener(EVENTS.CLICK, evt => {
+const saveChangesEditForm = evt => {
     evt.preventDefault();
     profileInfoTitle.textContent = nameInput.value;
     profileInfoSubtitle.textContent = jobInput.value;
+    editFormOverlay.classList.remove('formOverlay');
     editForm.classList.remove('editForm_opened');
-});
+}
+
+editFormButton.addEventListener(EVENTS.CLICK, saveChangesEditForm);
+
+// сохранение форм с submit через нажатие Enter ----------------------------
+editForm.addEventListener(EVENTS.KEYUP, evt => {
+    if ((editForm || addForm) && evt.key === 'Enter') {
+        if (editForm && nameInput.validity.valid && jobInput.validity.valid) {saveChangesEditForm(evt);}
+        if (addForm && namePlaceInput.validity.valid && urlPlaceInput.validity.valid) {addCard(evt);}
+    }
+})
+
+// функция закрытия ----------------------------
+const closePopup = evt => {
+    evt.preventDefault();
+    if (editForm) {
+        editFormOverlay.classList.remove('formOverlay');
+        editForm.classList.remove('editForm_opened');
+    }
+    if (addForm) {
+        addFormOverlay.classList.remove('formOverlay');
+        addForm.classList.remove('addForm_opened');
+    }
+    if (imagePopup) {
+        imagePopupContainer.innerHTML = '';
+        imagePopupOverlay.classList.remove('formOverlay');
+        imagePopup.classList.remove('image-popup_opened');
+    }
+}
+
+// закрытие карточки ----------------------------
+imagePopupCloseIcon.addEventListener(EVENTS.CLICK, closePopup);
 
 // закрытие формы редактирования ----------------------------
-editFormCloseIcon.addEventListener(EVENTS.CLICK, evt => {
-    evt.preventDefault();
-    editForm.classList.remove('editForm_opened');
-});
-
-// открытие формы добавления карточки ----------------------------
-profileAddButton.addEventListener(EVENTS.CLICK, evt => {
-    evt.preventDefault();
-    namePlaceInput.value = '';
-    linkPlaceInput.value = '';
-    addForm.classList.add('addForm_opened');
-});
+editFormCloseIcon.addEventListener(EVENTS.CLICK, closePopup);
 
 // закрытие формы добавления карточки ----------------------------
-addFormCloseIcon.addEventListener(EVENTS.CLICK, evt => {
-    evt.preventDefault();
-    addForm.classList.remove('addForm_opened');
-});
+addFormCloseIcon.addEventListener(EVENTS.CLICK, closePopup);
+
+// закрытие формы при нажатии на эскейп ----------------------------
+document.body.addEventListener(EVENTS.KEYUP, evt => {
+    if (evt.key === 'Escape') {
+        closePopup(evt)
+    }
+})
+
+// закрытие формы при нажатии на клике вне объекта ----------------------------
+document.body.addEventListener(EVENTS.MOUSEDOWN, evt => {
+    const edit = evt.target.closest('.editForm');
+    const add = evt.target.closest('.addForm');
+    const image = evt.target.closest('.image-popup');
+
+    if (edit || add || image) {
+        return;
+    }
+    closePopup(evt)
+})

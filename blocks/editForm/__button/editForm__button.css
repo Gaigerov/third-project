@@ -1,12 +1,14 @@
 .editForm__button {
     font-weight: normal;
     text-align: center;
-    background-color: rgba(0, 0, 0, 1);
-    color: #fff;
+    position: relative;
+    background-color: var(--color-dark);
+    color: var(--font-color-light);
     border: none;
 }
 
 .editForm__button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--color-dark);
+    opacity: 80%;
     cursor: pointer;
 }

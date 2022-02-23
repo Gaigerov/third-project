@@ -30,16 +30,18 @@
 @import url('../blocks/editForm/editForm.css');
 @import url('../blocks/editForm/editForm_opened.css');
 @import url('../blocks/editForm/__title/editForm__title.css');
-@import url('../blocks/editForm/__field/editForm__field.css');
+@import url('../blocks/editForm/__input/editForm__input.css');
 @import url('../blocks/editForm/__button/editForm__button.css');
+@import url('../blocks/editForm/__button/editForm__button_status_disabled.css');
 @import url('../blocks/editForm/__container/editForm__container.css');
 @import url('../blocks/editForm/__close-icon/editForm__close-icon.css');
 
 @import url('../blocks/addForm/addForm.css');
 @import url('../blocks/addForm/addForm_opened.css');
 @import url('../blocks/addForm/__title/addForm__title.css');
-@import url('../blocks/addForm/__field/addForm__field.css');
+@import url('../blocks/addForm/__input/addForm__input.css');
 @import url('../blocks/addForm/__button/addForm__button.css');
+@import url('../blocks/addForm/__button/addForm__button_status_disabled.css');
 @import url('../blocks/addForm/__container/addForm__container.css');
 @import url('../blocks/addForm/__close-icon/addForm__close-icon.css');
 
@@ -49,3 +51,25 @@
 @import url('../blocks/image-popup/__image/image-popup__image.css');
 @import url('../blocks/image-popup/__title/image-popup__title.css');
 @import url('../blocks/image-popup/__close-icon/image-popup__close-icon.css');
+
+@import url('../blocks/formOverlay/formOverlay.css');
+@import url('../blocks/validate/validate.css');
+
+
+@keyframes showForm {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes closeForm {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

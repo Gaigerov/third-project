@@ -1,6 +1,5 @@
 .image-popup__close-icon {
     position: absolute;   
-    z-index: 3;
 }
 
 .image-popup__close-icon:hover {

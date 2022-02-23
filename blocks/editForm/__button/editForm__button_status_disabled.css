@@ -1,0 +1,7 @@
+.editForm__button_status_disabled {
+    cursor: default;
+    color: var(--font-color-dark);
+    opacity: 0.2;
+    border: 1px solid var(--border-color-dark);
+    background-color: var(--color-disabled);
+}
